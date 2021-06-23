@@ -67,3 +67,25 @@ substr(city, 1, 1) in ('A', 'E', 'I', 'O', 'U');
 select sum(population)
 from city
 where district='California';
+
+-- Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'.
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+select c.name
+from city c join country co on (c.countrycode = co.code)
+where co.CONTINENT = 'Africa';
+
+-- Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+select country.CONTINENT, floor(avg(city.population))
+from country join city on (city.countrycode = country.code)
+group by country.CONTINENT;
+
+
+-- url -> https://www.hackerrank.com/challenges/more-than-75-marks/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
+
+select name
+from students
+where marks > 75
+order by substr(name, -3), id;
